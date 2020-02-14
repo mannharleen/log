@@ -53,10 +53,21 @@ func Error(x ...interface{}) {
 
 // For backward compatability
 func Println(x ...interface{}) {
-	Info(x...)
+	_, f, l, _ := runtime.Caller(1)
+	s := strings.Split(f, "/")
+	var y []interface{}
+	y = append(y, fmt.Sprintf("[%s:%v]", s[len(s)-1], l))
+	y = append(y, x...)
+	infoLogger.Println(y...)
 }
-func Printf(s string, x ...interface{}) {
-	Info(fmt.Sprintf(s, x...))
+func Printf(str string, x ...interface{}) {
+	_, f, l, _ := runtime.Caller(1)
+	s := strings.Split(f, "/")
+	var y []interface{}
+	y = append(y, fmt.Sprintf("[%s:%v]", s[len(s)-1], l))
+	y = append(y, fmt.Sprintf(str, x...))
+	infoLogger.Println(y...)
+	// Info(fmt.Sprintf(s, x...))
 }
 
 // WriterConfig: The following config options are available to be set
