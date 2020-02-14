@@ -53,7 +53,7 @@ func Error(x ...interface{}) {
 
 // For backward compatability
 func Println(x ...interface{}) {
-	Info(x)
+	Info(x...)
 }
 func Printf(s string, x ...interface{}) {
 	Info(fmt.Sprintf(s, x...))
