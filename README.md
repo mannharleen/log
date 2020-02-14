@@ -4,7 +4,7 @@ A go logger that focuses on simplicity
 
 ### Usage
 
-For APIs refer to: https://godoc.org/github.com/​mannharleen/​log
+For APIs refer to: https://godoc.org/github.com/mannharleen/log
 
 #### Use the default logger config
 ```go
