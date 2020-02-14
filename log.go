@@ -15,6 +15,8 @@ var infoLogger *log.Logger = log.New(os.Stdout, time.Now().Format("2006-01-02 15
 var warnLogger *log.Logger = log.New(os.Stdout, time.Now().Format("2006-01-02 15:04:05.999Z")+" [WARN] ", 0)
 var errorLogger *log.Logger = log.New(os.Stdout, time.Now().Format("2006-01-02 15:04:05.999Z")+" [ERROR] ", 0)
 
+// The following format:
+// [randomApp] 2006-01-02 15:04:05.999Z [DEBUG] [log_test.go:32] bug me not!
 func Debug(x ...interface{}) {
 	_, f, l, _ := runtime.Caller(1)
 	s := strings.Split(f, "/")
@@ -24,6 +26,7 @@ func Debug(x ...interface{}) {
 	debugLogger.Println(y...)
 }
 
+// Same as Debug, but uses INFO
 func Info(x ...interface{}) {
 	_, f, l, _ := runtime.Caller(1)
 	s := strings.Split(f, "/")
@@ -33,6 +36,7 @@ func Info(x ...interface{}) {
 	infoLogger.Println(y...)
 }
 
+// Same as Debug, but uses WARN
 func Warn(x ...interface{}) {
 	_, f, l, _ := runtime.Caller(1)
 	s := strings.Split(f, "/")
@@ -42,6 +46,7 @@ func Warn(x ...interface{}) {
 	warnLogger.Println(y...)
 }
 
+// Same as Debug, but uses ERROR
 func Error(x ...interface{}) {
 	_, f, l, _ := runtime.Caller(1)
 	s := strings.Split(f, "/")
@@ -52,6 +57,7 @@ func Error(x ...interface{}) {
 }
 
 // For backward compatability
+// Same as INFO
 func Println(x ...interface{}) {
 	_, f, l, _ := runtime.Caller(1)
 	s := strings.Split(f, "/")
@@ -60,6 +66,9 @@ func Println(x ...interface{}) {
 	y = append(y, x...)
 	infoLogger.Println(y...)
 }
+
+// For backward compatability
+// Same as INFO
 func Printf(str string, x ...interface{}) {
 	_, f, l, _ := runtime.Caller(1)
 	s := strings.Split(f, "/")
@@ -70,14 +79,15 @@ func Printf(str string, x ...interface{}) {
 	// Info(fmt.Sprintf(s, x...))
 }
 
-// WriterConfig: The following config options are available to be set
+// WriterConfig: Set config for what to write onto the log
 type WriterConfig struct {
 	AppName    string
 	TimeFormat string
 	Prefix     string
 }
 
-// Init: used to change the configuration of the logger
+// Init: Used to change the configuration of the logger
+// See source code for default values of config
 func Init(w io.Writer, wc WriterConfig) {
 	if wc.TimeFormat == "" {
 		wc.TimeFormat = "2006-01-02 15:04:05.999Z"

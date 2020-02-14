@@ -4,6 +4,8 @@ A go logger that focuses on simplicity
 
 ### Usage
 
+For APIs refer to: https://godoc.org/github.com/​mannharleen/​log
+
 #### Use the default logger config
 ```go
 package main
@@ -47,8 +49,8 @@ func main() {
 ```
 outputs:
 ```
-2020-02-14 [DEBUG] [main.go:17] bug me not!
-2020-02-14 [INFO] [main.go:18] this is not an information desk!
-2020-02-14 [WARN] [main.go:19] this is a warning sign
-2020-02-14 [ERROR] [main.go:20] it's a error! run!
+[APPX] 2020-02-14 [DEBUG] [main.go:17] bug me not!
+[APPX] 2020-02-14 [INFO] [main.go:18] this is not an information desk!
+[APPX] 2020-02-14 [WARN] [main.go:19] this is a warning sign
+[APPX] 2020-02-14 [ERROR] [main.go:20] it's a error! run!
 ```
