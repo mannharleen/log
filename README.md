@@ -31,6 +31,11 @@ outputs:
 ```
 
 #### Use a custom logger config
+Use log.Init to configure some useful defaults eg:
+- AppName
+- Timestamp format
+- A static prefix before each message
+
 ```go
 package main
 // filename: main.go
@@ -40,7 +45,7 @@ import (
 )
 
 func main() {
-    log.Init(os.Stdout, log.WriterConfig{TimeFormat: "2006-01-02"})
+    log.Init(os.Stdout, log.WriterConfig{TimeFormat: "2006-01-02", AppName: "APPX"})
     log.Debug("bug me not!")
     log.Info("this is not an information desk!")
     log.Warn("this is a warning sign")
